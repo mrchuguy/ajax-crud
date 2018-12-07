@@ -5,6 +5,8 @@ class ApiModel extends Model {
         if($this->db->connect_errno===0){
             $query='select * from news';
             $res = $this->db->query($query);
+	    var_dump($res);
+	    exit();
             if($res){
                return $res->fetch_all(MYSQLI_ASSOC);
             } else{

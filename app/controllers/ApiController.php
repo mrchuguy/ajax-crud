@@ -2,15 +2,14 @@
 class ApiController extends Controller {
 
     public function action_index() {
-	
+	$this->model = new ApiModel();
+	$this->model->get_news();
     }
 
     public function action_add() {
 	$title = filter_input(INPUT_POST, 'title');
 	$text = filter_input(INPUT_POST, 'text');
 	$file = $_FILES[image];
-	var_dump($file['size']);
-	var_dump(MAX_IMAGE_SIZE);
 	if ($file['error'] !== UPLOAD_ERR_OK) {
 	    $this->message[] = 'Some error';
 	} else if (!in_array($file['type'], ALLOWED_TYPES)) {
