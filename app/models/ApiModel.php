@@ -5,10 +5,8 @@ class ApiModel extends Model {
         if($this->db->connect_errno===0){
             $query='select * from news';
             $res = $this->db->query($query);
-	    var_dump($res);
-	    exit();
             if($res){
-               return $res->fetch_all(MYSQLI_ASSOC);
+                return $res->fetch_all(MYSQLI_ASSOC);
             } else{
                 return false;
             }
@@ -19,10 +17,11 @@ class ApiModel extends Model {
      * @param type $title
      * @param type $text
      * @param type $image
+     * @param timestamp $date
      */
-    public function add_news($title, $text, $image){
+    public function add_news($title, $text, $image, $date){
         if($this->db->connect_errno===0){
-            $query='INSERT INTO news (title, text, image) values ("'.$title.'", "'.$text.'", "'.$image.'")';
+            $query='INSERT INTO news (title, text, image, date) values ("'.$title.'", "'.$text.'", "'.$image.'", "'.$date.'")';
             $this->db->query($query);
         }
     }

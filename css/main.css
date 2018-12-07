@@ -1,12 +1,38 @@
+#news{
+    min-height: 1000px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#news .table_news{
+    flex-basis: 43vw;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: 20px;
+}
+#news .table_news tr{
+    border-bottom: 1px solid black;
+    display: flex;
+}
+#news .table_news tr td{
+    padding: 8px;
+    flex-basis: 50%;
+}
+#news .table_news button{
+    width: 100%;
+}
+#news .table_news img{
+    width: 100%;
+}
 #modal_add{
     display: none;
     min-height: 200px;
-    width: 500px;
-    position: fixed;
+    width: 40vw;
+    position: absolute;
     z-index: 10;
     border: 1px solid black;
-    top: 100px;
-    left: 100px;
+    top: 50px;
+    left: 30vw;
     background-color: white;
     box-shadow: black 5px 5px 30px 2px;
 }
