@@ -1,5 +1,4 @@
 <?php
-
 class ApiController extends Controller {
 
     public function action_index() {
@@ -7,20 +6,22 @@ class ApiController extends Controller {
     }
 
     public function action_add() {
-	var_dump($_POST, $_FILES);
 	$title = filter_input(INPUT_POST, 'title');
 	$text = filter_input(INPUT_POST, 'text');
 	$file = $_FILES[image];
+	var_dump($file['size']);
+	var_dump(MAX_IMAGE_SIZE);
 	if ($file['error'] !== UPLOAD_ERR_OK) {
-	    $message = 'Some error';
-	} else if (in_array($file['type'], ALLOWED_TYPES)) {
-	    $message = 'Не тот тип файла';
-	} else if ($file['size'] > MAX_IMAGE_FILE) {
-	    $message = 'Слишком большой файл';
+	    $this->message[] = 'Some error';
+	} else if (!in_array($file['type'], ALLOWED_TYPES)) {
+	    $this->message[] = 'error type';
+	} else if ($file['size'] > MAX_IMAGE_SIZE) {
+	    $this->message[] = 'big file';
 	} else if (!move_uploaded_file($file['tmp_name'], IMAGES_DIRECTORY . DIRECTORY_SEPARATOR . $file['name'])) {
-	    $message = 'Файл не загружен';
+	    $this->message[] = 'not load';
 	} else {
-	    $message = 'ok';
+	    $this->model = new ApiModel();
+	    $this->model->add_news($title, $text , $file['name']);
 	}
     }
 

@@ -11,8 +11,8 @@ $('#form_add').submit(function () {
             cache: false,
             contentType: false,
             processData: false,
-            success: function (files) {
-                console.log(files);
+            success: function (msg) {
+                console.log(msg);
             }
         });
         return false;
