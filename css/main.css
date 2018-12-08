@@ -1,5 +1,4 @@
 #news{
-    min-height: 1000px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -8,7 +7,7 @@
     flex-basis: 43vw;
     border-collapse: collapse;
     border: 1px solid black;
-    margin: 20px;
+    margin: 15px 20px;
 }
 #news .table_news tr{
     border-bottom: 1px solid black;
@@ -18,7 +17,11 @@
     padding: 8px;
     flex-basis: 50%;
 }
-#news .table_news button{
+#news .table_news td:first-child{
+    font-weight: bold;
+    font-size: 20px;
+}
+#news .table_news input[type='submit']{
     width: 100%;
 }
 #news .table_news img{

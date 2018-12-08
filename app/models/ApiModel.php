@@ -14,9 +14,9 @@ class ApiModel extends Model {
     }
     /**
      * 
-     * @param type $title
-     * @param type $text
-     * @param type $image
+     * @param string $title
+     * @param string $text
+     * @param string $image
      * @param timestamp $date
      */
     public function add_news($title, $text, $image, $date){
@@ -25,11 +25,26 @@ class ApiModel extends Model {
             $this->db->query($query);
         }
     }
-    
+
+    /**
+     * @param $id
+     */
     public function delete_news($id){
         if($this->db->connect_errno === 0){
-            $query = 'DELETE from students where id='.$id;
+            $query = 'DELETE from news where id='.$id;
             $this->db->query($query);
+        }
+    }
+    public function get_image_directory($id){
+        if($this->db->connect_errno === 0){
+            $query = 'select (image) from news where id='.$id;
+            $res = $this->db->query($query);
+            if($res){
+                $arr = $res->fetch_all(MYSQLI_ASSOC);
+                return $arr[0]['image'];
+            } else{
+                return false;
+            }
         }
     }
 }

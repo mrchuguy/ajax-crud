@@ -2,7 +2,6 @@
 
 class ApiController extends Controller
 {
-
     public function action_index()
     {
         $this->model = new ApiModel();
@@ -23,16 +22,24 @@ class ApiController extends Controller
             $this->message[] = 'error type';
         } else if ($file['size'] > MAX_IMAGE_SIZE) {
             $this->message[] = 'big file';
-        } else if (!move_uploaded_file($file['tmp_name'], IMAGES_DIRECTORY . DIRECTORY_SEPARATOR . $file['name'])) {
-            $this->message[] = 'not load';
         } else {
-            $this->model = new ApiModel();
-            $this->model->add_news($title, $text, $file['name'], time());
+            if(!file_exists(IMAGES_DIRECTORY)){
+                mkdir(IMAGES_DIRECTORY);
+            }
+            if (!move_uploaded_file($file['tmp_name'], IMAGES_DIRECTORY . DIRECTORY_SEPARATOR . $file['name'])) {
+                $this->message[] = 'not load';
+            } else {
+                $this->model = new ApiModel();
+                $this->model->add_news($title, $text, $file['name'], time());
+            }
         }
     }
     public function action_delete(){
-        $title = filter_input(INPUT_POST, 'id');
-        var_dump($_POST);
+        $id = filter_input(INPUT_POST, 'id');
+        $this->model = new ApiModel();
+//        $image = $this->model->get_image_directory($id);
+//        unset(IMAGES_DIRECTORY . DIRECTORY_SEPARATOR .$image);
+        $this->model->delete_news($id);
     }
 
 }

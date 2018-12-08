@@ -12,7 +12,7 @@
 	<label> Добавить картинку: 
 	    <input type="file" name="image" accept="image/*" id="image"/>
 	</label>
-            <input type="submit" value="Добавить товар"/>
+            <input type="submit" value="ADD NEWS"/>
     </form>
 </div>
 <div id="modal_update"></div>

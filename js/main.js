@@ -25,8 +25,22 @@ $('#form_add').submit(function () {
 
 function show_news(news) {
     $(news).each(function (i, news_item) {
-        //date = new Date(news_item.date);
-        $('#news').append('<table class="table_news"><tr><td>' + news_item.title + '</td><td>' + news_item.date + '</td><tr><td><img src="/upload_file/'+news_item.image+'" alt=""></td><td>' + news_item.text + '' + '</td></tr><tr><td><form method="post" class="form_delete"><input type="submit" value="DELETE"/><input type=hidden value=' + news_item.id + '></form></td><td><form method="post" class="form_update"><input type="submit" value="EDIT"/><input type=hidden value=' + news_item.id + '></form></td></tr></table>');
+        const date = new Date(news_item.date * 1000);
+        $('#news').append('' +
+            '<table class="table_news">' +
+                '<tr>' +
+                    '<td>' + news_item.title + '</td>' +
+                    '<td>' + date.getDate()+'.'+ (date.getMonth()+1) +'.'+ date.getFullYear()+ ' ' + date.getHours()+':'+date.getMinutes() + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td><img src="/upload_file/'+news_item.image+'" alt=""></td>' +
+                    '<td>' + news_item.text + '' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td><form method="post" class="form_delete"><input type="submit" value="DELETE"/><input type=hidden value=' + news_item.id + '></form></td>' +
+                    '<td><form method="post" class="form_update"><input type="submit" value="EDIT"/><input type=hidden value=' + news_item.id + '></form></td>' +
+                '</tr>' +
+            '</table>');
     });
     delete_news();
     update_news();
@@ -48,13 +62,10 @@ function delete_news() {
         $.ajax({
             url: location.origin + '/api/delete',
             type: 'POST',
-            data: id,
-            cache: false,
-            contentType: false,
-            processData: false,
+            data: {id: id},
             success: function () {
-                // $("#news").empty();
-                // get_news();
+                $("#news").empty();
+                get_news();
             }
         });
         return false;
