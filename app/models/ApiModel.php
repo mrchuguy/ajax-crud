@@ -47,4 +47,15 @@ class ApiModel extends Model {
             }
         }
     }
+    public function get_news_by_id($id){
+	if($this->db->connect_errno === 0){
+            $query = 'select * from news where id='.$id;
+            $res = $this->db->query($query);
+            if($res){
+                return $res->fetch_all(MYSQLI_ASSOC);
+            } else{
+                return false;
+            }
+        }
+    }
 }

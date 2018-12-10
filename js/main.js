@@ -47,7 +47,7 @@ function show_news(news) {
                 '</tr>');
     });
     delete_news();
-    update_news();
+    update_form();
 }
 
 function get_news() {
@@ -75,9 +75,40 @@ function delete_news() {
         return false;
     });
 }
-function update_news() {
+function show_update_form(news_json){
+    $('#modal_update_form').append('<form class="form_update" method="post" enctype="multipart/form-data"></form>');
+    $(news_json).each(function (i, news_item) {
+        const date = new Date(news_item.date * 1000);
+        $('#modal_update .form_update').append('' +
+                    '<label>Title'+
+                        '<input type="text" name="title" id="title" value='+ news_item.title +'/>'+
+                    '</label>'+
+                    '<label>Text'+
+                        '<textarea name="text" id="text">'+ news_item.text +'</textarea>'+
+                    '</label>'+
+                    '<img src="/upload_files/'+news_item.image+'" alt="">'+
+                    '<label> Change image:'+
+                        '<input type="file" name="image" accept="image/*" id="image"/>'+
+                    '</label>'+
+                        '<input type="submit" value="EDIT NEWS"/>');
+    });
+}
+function update_form() {
     $(".form_update").submit(function () {
-        alert('up');
+        var id = $(this).find('input[type="hidden"]').val();
+        $.ajax({
+            url: location.origin + '/api/update_form',
+            type: 'POST',
+            data: {id: id},
+            success: function (news_json) {
+                $("#modal_update_form").empty();
+                $('#modal_update').css('display', 'block');
+                if (news_json) {
+                show_update_form(news_json);
+           }
+            }
+        });
+        return false;
     });
     return false;
 }

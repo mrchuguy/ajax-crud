@@ -41,5 +41,13 @@ class ApiController extends Controller
         unlink( IMAGES_DIRECTORY . DIRECTORY_SEPARATOR . $image);
         $this->model->delete_news($id);
     }
-
+    public function action_update_form()
+    {
+        $id = filter_input(INPUT_POST, 'id');
+        $this->model = new ApiModel();
+	$news = $this->model->get_news_by_id($id);
+        $json = json_encode($news);
+        header('Content-type: application/json; charset=utf-8');
+        echo $json;
+    }
 }
