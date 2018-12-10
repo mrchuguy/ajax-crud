@@ -2,7 +2,8 @@
 <button id="btn_add">add news</button>
 <div id="news"></div>
 <div id="modal_add">
-    <form method="post" enctype="multipart/form-data" id="form_add">
+    <button onclick="$('#modal_add').css('display','none')">close</button>
+    <form method="post" enctype="multipart/form-data" id="form_add">	
 	<label>Title
 	    <input type="text" name="title" id="title"/>
 	</label>

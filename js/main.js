@@ -24,23 +24,27 @@ $('#form_add').submit(function () {
 });
 
 function show_news(news) {
+    $('#news').append('<table class="table_news"></table>');
+    $('#news .table_news').append('\
+        <tr>\n\
+            <th>title</th>\n\
+            <th>date</th>\n\
+            <th>image</th>\n\
+            <th>text</th>\n\
+            <th>delete</th>\n\
+            <th>edit</th>\n\
+        </tr>');
     $(news).each(function (i, news_item) {
         const date = new Date(news_item.date * 1000);
-        $('#news').append('' +
-            '<table class="table_news">' +
+        $('#news .table_news').append('' +
                 '<tr>' +
                     '<td>' + news_item.title + '</td>' +
                     '<td>' + date.getDate()+'.'+ (date.getMonth()+1) +'.'+ date.getFullYear()+ ' ' + date.getHours()+':'+date.getMinutes() + '</td>' +
-                '</tr>' +
-                '<tr>' +
                     '<td><img src="/upload_files/'+news_item.image+'" alt=""></td>' +
                     '<td>' + news_item.text + '' + '</td>' +
-                '</tr>' +
-                '<tr>' +
                     '<td><form method="post" class="form_delete"><input type="submit" value="DELETE"/><input type=hidden value=' + news_item.id + '></form></td>' +
                     '<td><form method="post" class="form_update"><input type="submit" value="EDIT"/><input type=hidden value=' + news_item.id + '></form></td>' +
-                '</tr>' +
-            '</table>');
+                '</tr>');
     });
     delete_news();
     update_news();

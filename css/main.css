@@ -1,31 +1,24 @@
 #news{
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 #news .table_news{
-    flex-basis: 43vw;
+    flex-basis: 95vw;
     border-collapse: collapse;
     border: 1px solid black;
     margin: 15px 20px;
 }
-#news .table_news tr{
-    border-bottom: 1px solid black;
-    display: flex;
-}
-#news .table_news tr td{
+
+#news .table_news tr td, #news .table_news tr th{
     padding: 8px;
-    flex-basis: 50%;
+    border: 1px solid black;    
 }
-#news .table_news td:first-child{
-    font-weight: bold;
-    font-size: 20px;
-}
+
 #news .table_news input[type='submit']{
     width: 100%;
 }
 #news .table_news img{
-    width: 100%;
+    width: 15vw;
 }
 #modal_add{
     display: none;
