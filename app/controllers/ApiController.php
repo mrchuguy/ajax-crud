@@ -36,9 +36,9 @@ class ApiController extends Controller
     }
     public function action_delete(){
         $id = filter_input(INPUT_POST, 'id');
-        $this->model = new ApiModel();
-//        $image = $this->model->get_image_directory($id);
-//        unset(IMAGES_DIRECTORY . DIRECTORY_SEPARATOR .$image);
+        $this->model = new ApiModel();	
+        $image = $this->model->get_image_directory($id);
+        unlink( IMAGES_DIRECTORY . DIRECTORY_SEPARATOR . $image);
         $this->model->delete_news($id);
     }
 
