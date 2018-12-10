@@ -33,18 +33,18 @@
     background-color: white;
     box-shadow: black 5px 5px 30px 2px;
 }
-#modal_add form, #modal_add label, .form_update, .form_update label{
+#modal_add form, #modal_add label, #news_update, #news_update label{
     padding: 10px;
     display: flex;
     flex-direction: column;
 }
-.form_update img{
+#news_update img{
     width: 50%;
 }
-#modal_add form input, .form_update input{
+#modal_add form input, #news_update input{
     padding: 10px;
     margin:  5px 0;
 }
-#modal_add textarea, .form_update textarea{
+#modal_add textarea, #news_update textarea{
     height: 150px;
 }

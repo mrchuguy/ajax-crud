@@ -76,10 +76,9 @@ function delete_news() {
     });
 }
 function show_update_form(news_json){
-    $('#modal_update_form').append('<form class="form_update" method="post" enctype="multipart/form-data"></form>');
+    $('#modal_update_form').append('<form id="news_update" method="post" enctype="multipart/form-data"></form>');
     $(news_json).each(function (i, news_item) {
-        const date = new Date(news_item.date * 1000);
-        $('#modal_update .form_update').append('' +
+        $('#modal_update #news_update').append('' +
                     '<label>Title'+
                         '<input type="text" name="title" id="title" value='+ news_item.title +'/>'+
                     '</label>'+
@@ -90,8 +89,10 @@ function show_update_form(news_json){
                     '<label> Change image:'+
                         '<input type="file" name="image" accept="image/*" id="image"/>'+
                     '</label>'+
+                        '<input type=hidden name="id" value=' + news_item.id + '>'+
                         '<input type="submit" value="EDIT NEWS"/>');
     });
+    update_news();
 }
 function update_form() {
     $(".form_update").submit(function () {
@@ -111,4 +112,24 @@ function update_form() {
         return false;
     });
     return false;
+}
+
+function update_news(){
+    $('#news_update').submit(function () {
+    var fd = new FormData(document.getElementById('news_update'));
+    $.ajax({
+        url: location.origin + '/api/update',
+        type: 'POST',
+        data: fd,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function () {            
+            $("#news").empty();
+            get_news();
+            $('#modal_update').css('display', 'none');
+        }
+    });
+    return false;
+});
 }
