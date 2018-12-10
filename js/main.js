@@ -33,7 +33,7 @@ function show_news(news) {
                     '<td>' + date.getDate()+'.'+ (date.getMonth()+1) +'.'+ date.getFullYear()+ ' ' + date.getHours()+':'+date.getMinutes() + '</td>' +
                 '</tr>' +
                 '<tr>' +
-                    '<td><img src="/upload_file/'+news_item.image+'" alt=""></td>' +
+                    '<td><img src="/upload_files/'+news_item.image+'" alt=""></td>' +
                     '<td>' + news_item.text + '' + '</td>' +
                 '</tr>' +
                 '<tr>' +
