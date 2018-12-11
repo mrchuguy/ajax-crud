@@ -45,7 +45,7 @@ class ApiController extends Controller
     {
         $id = filter_input(INPUT_POST, 'id');
         $this->model = new ApiModel();
-	$news = $this->model->get_news_by_id($id);
+	    $news = $this->model->get_news_by_id($id);
         $json = json_encode($news);
         header('Content-type: application/json; charset=utf-8');
         echo $json;
@@ -53,11 +53,11 @@ class ApiController extends Controller
     
     public function action_update(){
 	$title = filter_input(INPUT_POST, 'title');
-        $text = filter_input(INPUT_POST, 'text');
+	$text = filter_input(INPUT_POST, 'text');
 	$id = filter_input(INPUT_POST, 'id');
 	
 	$this->model = new ApiModel();
-        $file = $_FILES['image'];
+	$file = $_FILES['image'];
 	if($file['error'] === 4){
 	    $this->model->update_news($id, $title, $text , time());
 	} else {

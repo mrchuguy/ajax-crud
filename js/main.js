@@ -80,7 +80,7 @@ function show_update_form(news_json){
     $(news_json).each(function (i, news_item) {
         $('#modal_update #news_update').append('' +
                     '<label>Title'+
-                        '<input type="text" name="title" id="title" value='+ news_item.title +'/>'+
+                        '<input type="text" name="title" id="title" value='+ news_item.title +'>'+
                     '</label>'+
                     '<label>Text'+
                         '<textarea name="text" id="text">'+ news_item.text +'</textarea>'+

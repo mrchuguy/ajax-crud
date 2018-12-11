@@ -48,3 +48,12 @@
 #modal_add textarea, #news_update textarea{
     height: 150px;
 }
+#modal_add button, #modal_update button{
+    background-color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+}

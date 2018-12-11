@@ -61,10 +61,11 @@ class ApiModel extends Model {
     public function update_news($id, $title, $text, $date, $image=null){
 	if($this->db->connect_errno===0){    
 	    if($image === null){
-		$query='update news title="'.$title.'", text="'.$text.'", date="'.$date.'" where id="'.$id.'"';
+		$query='update news set title="'.$title.'", text="'.$text.'", date="'.$date.'" where id="'.$id.'"';
 		$this->db->query($query);
 	    } else {
-		$query='update news title="'.$title.'", text="'.$text.'", date="'.$date.'", image="'.$image.'" where id="'.$id.'"';
+		$query='update news set title="'.$title.'", text="'.$text.'", date="'.$date.'", image="'.$image.'" where id="'.$id.'"';
+
 		$this->db->query($query);
 	    }
 	}
